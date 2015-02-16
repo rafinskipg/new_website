@@ -1,0 +1,31 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
+// endbower
+@import 'palette';
+
+body{
+  font-family: $font;
+}
+
+.centered{
+  margin: auto;
+  //position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table; }
+.clearfix:after {
+  clear: both; }
+
+@import 'mixins';
+@import 'fonts';
+@import 'modules/page';
+@import 'modules/social';
+@import 'external/animate';
