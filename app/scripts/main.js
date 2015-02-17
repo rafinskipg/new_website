@@ -2,8 +2,7 @@
  *
  * Truekr sample app
  */
-
-  var app = require('./router.jsx');
+var app = require('./router.jsx');
 
 
 $(document).ready(function(){
