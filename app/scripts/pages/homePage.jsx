@@ -2,11 +2,12 @@ var React = require('react');
 var _ = require('lodash');
 
 var CanvasElement = require('../canvas/canvas.jsx');
-var ParticlesCombustibleBehavior = require('../behaviors/ParticlesCombustible');
+var ParticlesCombustibleBehavior = require('../behaviors/SquaresFlipping');
 var ParticlesGravityBehavior = require('../behaviors/ParticlesGravity');
+var SquaresFlipping = require('../behaviors/SquaresFlipping');
 
-var SocialShare = require('../components/social.jsx');
 var BookRecommend = require('../components/book.jsx');
+var LeftColumn = require('../columns/leftcolumn.jsx');
 
 var homePage = React.createClass({
   getInitialState: function(){
@@ -16,20 +17,21 @@ var homePage = React.createClass({
       ];
 
     return {
-      behavior : _.sample(behaviors)
+      behavior : ParticlesGravityBehavior
     }
   },
   render: function(){
     return (
       <div className="page home">
 
-        <div className="background">
-          <CanvasElement behavior={this.state.behavior} />
-        </div>
+        <LeftColumn/>
+        
+        <div className="main-content">
+          <div className="background">
+            <CanvasElement behavior={this.state.behavior} />
+          </div>
 
-        <div className="content">
-          <SocialShare />
-          <div className="container">
+          <div className="content">
             <div className="row">
               <div className="col-xs-12 text-center">
                 <BookRecommend />
@@ -37,6 +39,9 @@ var homePage = React.createClass({
             </div>
           </div>
         </div>
+
+
+      
       </div>
     )
   }

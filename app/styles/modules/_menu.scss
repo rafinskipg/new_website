@@ -1,0 +1,19 @@
+.menu {
+
+  .buttons-container{
+    text-shadow: none;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-bottom : 1px solid $borderMenu;
+    padding-bottom: 20px;
+  }
+  .menu-item{
+    display: block;
+    font-size: 30px;
+    color: white;
+  }
+  &.animated{
+    animation-delay : 1000ms;
+  }
+}

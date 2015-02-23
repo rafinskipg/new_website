@@ -1,0 +1,12 @@
+.left-column{
+  width : 100px;
+  float : left;
+  height : 100vh;
+  background : $backgroundMenu;
+}
+
+.main-content{
+  margin-left : 100px;
+  position: relative;
+  min-height: 100vh;
+}
