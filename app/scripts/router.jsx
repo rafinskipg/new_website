@@ -1,4 +1,5 @@
 var HomeView = require('./pages').homePage;
+var HireView = require('./pages').hire;
 var Blog = require('./pages').blog;
 var Post = require('./pages').post;
 var PageNotFound = require('./common').notFound;
@@ -23,12 +24,13 @@ function start () {
   var routes = (
     <Route name="app" path="/" handler={App}>
       <DefaultRoute handler={HomeView} />
-      <NotFoundRoute handler={PageNotFound}></NotFoundRoute>
+      <Route name="hire" handler={HireView} />
+      
       <Route name="blog" handler={Blog}>
         <Route name="post" path="/post/:postId" handler={Post} />
-      </Route
-      <NotFoundRoute handler={UserRouteNotFound}/>
-    </Route>
+      </Route>
+      <NotFoundRoute handler={PageNotFound}></NotFoundRoute>
+
     </Route>
   );
 
