@@ -1,7 +1,7 @@
 var HomeView = require('./pages').homePage;
 var HireView = require('./pages').hire;
-var Blog = require('./pages').blog;
-var Post = require('./pages').post;
+var ExperimentsView = require('./pages').experiments;
+var ExperimentItemView = require('./pages').experiment;
 var PageNotFound = require('./common').notFound;
 var Router = require('react-router');
 var DefaultRoute = Router.DefaultRoute;
@@ -26,8 +26,8 @@ function start () {
       <DefaultRoute handler={HomeView} />
       <Route name="hire" handler={HireView} />
       
-      <Route name="blog" handler={Blog}>
-        <Route name="post" path="/post/:postId" handler={Post} />
+      <Route name="experiments" handler={ExperimentsView}>
+        <Route name="experiment" path="/experiment/:experimentId" handler={ExperimentItemView} />
       </Route>
       <NotFoundRoute handler={PageNotFound}></NotFoundRoute>
 

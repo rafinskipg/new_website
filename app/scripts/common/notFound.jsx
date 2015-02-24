@@ -10,9 +10,9 @@ var NotFound = React.createClass({
   },
   render: function() {
     return (
-      <div className="notFound">
+      <div className="not-found-page">
         <div className="icon">
-          <div className="iconmelon">
+          <div className="iconmelon centered">
               <svg viewBox="0 0 32 32">
                 <g filter="" dangerouslySetInnerHTML={{__html:
                   "<use xlink:href=\"#robo\"></use>"

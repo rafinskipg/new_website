@@ -1,0 +1,16 @@
+.not-found-page{
+  background: $backgroundMenu;
+  font-size: 40px;
+  text-align: center;
+  height: 100vh;
+  
+  .icon{
+    padding-top: 200px;
+  }
+
+  .iconmelon{
+    width: 200px;
+    height: 200px;
+    fill : white;
+  }
+}

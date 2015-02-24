@@ -1,19 +1,20 @@
 var React = require('react');
-var _ = require('lodash');
 
 var CanvasElement = require('../canvas/canvas.jsx');
-var SquaresFlippingBehavior = require('../behaviors/SquaresFlipping');
 var LeftColumn = require('../columns/leftcolumn.jsx');
 
-var hirePage = React.createClass({
+var PageLayout = React.createClass({
   getInitialState: function(){
     return {
-      behavior : SquaresFlippingBehavior
+      behavior : this.props.behavior,
+      name : this.props.name,
+      content: this.props.content
     }
   },
   render: function(){
+    var name = "page " + this.state.name;
     return (
-      <div className="page hire">
+      <div className={name}>
 
         <LeftColumn/>
         
@@ -25,7 +26,7 @@ var hirePage = React.createClass({
           <div className="content">
             <div className="row">
               <div className="col-xs-12 text-center">
-                You can hire me
+                {this.state.content}
               </div>
             </div>
           </div>
@@ -38,4 +39,4 @@ var hirePage = React.createClass({
   }
 })
 
-module.exports = hirePage
+module.exports = PageLayout

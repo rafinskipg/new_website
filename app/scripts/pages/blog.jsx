@@ -1,13 +1,18 @@
 var React = require('react');
-var events = require('../events');
-var api = require('../api');
+
+var Page = require('./pageLayout.jsx');
+var ParticlesCombustibleBehavior = require('../behaviors/SquaresFlipping');
 
 var BlogPage = React.createClass({
+  getInitialState: function(){
+    return {
+      behavior : ParticlesCombustibleBehavior
+    }
+  },
   render: function(){
+    var content = 'My blog';
     return (
-      <div>
-      hola
-      </div>
+      <Page name="blog" behavior={this.state.behavior} content={content} />
     )
   }
 })

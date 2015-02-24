@@ -1,15 +1,20 @@
 var React = require('react');
-var events = require('../events');
-var api = require('../api');
 
-var Post = React.createClass({
+var Page = require('./pageLayout.jsx');
+var ParticlesCombustibleBehavior = require('../behaviors/SquaresFlipping');
+
+var PostPage = React.createClass({
+  getInitialState: function(){
+    return {
+      behavior : ParticlesCombustibleBehavior
+    }
+  },
   render: function(){
+    var content = 'The post';
     return (
-      <div>
-      hola
-      </div>
+      <Page name="post" behavior={this.state.behavior} content={content} />
     )
   }
 })
 
-module.exports = Post
+module.exports = PostPage
