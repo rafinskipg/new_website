@@ -66,10 +66,13 @@ function clear(context, canvas){
   context.globalCompositeOperation = "lighter";
 }
 
-
+var myEngine;
 
 function initialize(canvas){
-  var myEngine = new Engine(canvas);
+  if(myEngine){
+    myEngine.stop();
+  }
+  myEngine = new Engine(canvas);
   myEngine.setClearingMethod(clear);
   myEngine.addStartCallback(start);
   myEngine.addUpdateCallback(update);

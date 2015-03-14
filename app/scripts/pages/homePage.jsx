@@ -5,6 +5,7 @@ var CanvasElement = require('../canvas/canvas.jsx');
 var ParticlesCombustibleBehavior = require('../behaviors/SquaresFlipping');
 var ParticlesGravityBehavior = require('../behaviors/ParticlesGravity');
 var SquaresFlipping = require('../behaviors/SquaresFlipping');
+var glitch = require('../behaviors/glitch');
 
 var BookRecommend = require('../components/book.jsx');
 var LeftColumn = require('../columns/leftcolumn.jsx');
@@ -17,7 +18,7 @@ var homePage = React.createClass({
       ];
 
     return {
-      behavior : ParticlesGravityBehavior
+      behavior : glitch
     }
   },
   render: function(){

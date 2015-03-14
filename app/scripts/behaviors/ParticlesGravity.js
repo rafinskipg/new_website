@@ -128,8 +128,14 @@ function handleMouseUp(canvas){
 /**********************************************************
   Init engine
 ***********************************************************/
+var myEngine;
+
 function initialize(canvas){
-  var myEngine = new Engine(canvas);
+  if(myEngine){
+    console.log('stop');
+    myEngine.stop();
+  }
+  myEngine = new Engine(canvas);
   myEngine.setClearingMethod(clear);
   myEngine.addStartCallback(start);
   myEngine.addUpdateCallback(update);
