@@ -5,14 +5,24 @@ var _ = require('lodash');
 var shouldRender = false;
 var hasLoaded = false;
 var time = 0;
+var microTime = 0;
 
 function update(dt, context, canvas){
   if(hasLoaded){
     time += dt;
 
-    if(time > 500){
-      shouldRender = true;
-      time = 0;
+    if(time > 2000){
+      //shouldRender = true;
+      microTime += dt;
+      if(microTime > 20){
+        shouldRender = true;
+        microTime = 0;
+      }
+      if(time > 2500){
+        shouldRender = false;
+        time = 0;
+        microTime = 0;
+      }
     }
   }
 }
@@ -128,7 +138,7 @@ function start(context, canvas){
       // console.log(imgDataArr.slice(0, 30));
       // console.log (img.src.substring(0,30));
   };
-  initialImage.src = "/images/cover.jpg";
+  initialImage.src = "/images/cpde.png";
 }
 
 var myEngine;

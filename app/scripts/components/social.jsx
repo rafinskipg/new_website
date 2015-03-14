@@ -19,6 +19,7 @@ var Sharebuttons = React.createClass({
   render : function(){
     return (
         <div className="share-buttons clearfix animated fadeInUp">
+          Find me:
           <div className="buttons-container">
             <a href={this.state.twitter} target="_blank" className="share-button twitter ">
               <span className="fa fa-twitter-square"></span>

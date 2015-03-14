@@ -8,7 +8,8 @@ var SquaresFlipping = require('../behaviors/SquaresFlipping');
 var glitch = require('../behaviors/glitch');
 
 var BookRecommend = require('../components/book.jsx');
-var LeftColumn = require('../columns/leftcolumn.jsx');
+
+var Page = require('./pageLayout.jsx');
 
 var homePage = React.createClass({
   getInitialState: function(){
@@ -22,28 +23,13 @@ var homePage = React.createClass({
     }
   },
   render: function(){
-    return (
-      <div className="page home">
-
-        <LeftColumn/>
-        
-        <div className="main-content">
-          <div className="background">
-            <CanvasElement behavior={this.state.behavior} />
-          </div>
-
-          <div className="content">
-            <div className="row">
-              <div className="col-xs-12 text-center">
-                <BookRecommend />
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-      
+    var content = (
+      <div>
+        <div className="page-content"><BookRecommend /></div>
       </div>
+    );
+    return (
+      <Page name="home" behavior={this.state.behavior} content={content} />
     )
   }
 })

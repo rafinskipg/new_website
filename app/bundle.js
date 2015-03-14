@@ -387,14 +387,24 @@ var _ = require('lodash');
 var shouldRender = false;
 var hasLoaded = false;
 var time = 0;
+var microTime = 0;
 
 function update(dt, context, canvas){
   if(hasLoaded){
     time += dt;
 
-    if(time > 500){
-      shouldRender = true;
-      time = 0;
+    if(time > 2000){
+      //shouldRender = true;
+      microTime += dt;
+      if(microTime > 20){
+        shouldRender = true;
+        microTime = 0;
+      }
+      if(time > 2500){
+        shouldRender = false;
+        time = 0;
+        microTime = 0;
+      }
     }
   }
 }
@@ -510,7 +520,7 @@ function start(context, canvas){
       // console.log(imgDataArr.slice(0, 30));
       // console.log (img.src.substring(0,30));
   };
-  initialImage.src = "/images/cover.jpg";
+  initialImage.src = "/images/cpde.png";
 }
 
 var myEngine;
@@ -654,11 +664,17 @@ var Menu = React.createClass({displayName: "Menu",
             React.createElement("a", {href: "#", className: "menu-item", title: "Home"}, 
               React.createElement("span", {className: "logo-rvpg"})
             ), 
+            React.createElement("a", {href: "#about", className: "menu-item", title: "About"}, 
+              React.createElement("span", {className: "text"}, "About..."), 
+              React.createElement("span", {className: "fa fa-user"})
+            ), 
             React.createElement("a", {href: "#experiments", className: "menu-item", title: "Experiments"}, 
+              React.createElement("span", {className: "text"}, "Experiments"), 
               React.createElement("span", {className: "fa fa-magic"})
             ), 
         
             React.createElement("a", {href: "#hire", className: "menu-item", title: "Hire"}, 
+              React.createElement("span", {className: "text"}, "Hire"), 
               React.createElement("span", {className: "fa fa-user-plus"})
             )
 
@@ -691,6 +707,7 @@ var Sharebuttons = React.createClass({displayName: "Sharebuttons",
   render : function(){
     return (
         React.createElement("div", {className: "share-buttons clearfix animated fadeInUp"}, 
+          "Find me:", 
           React.createElement("div", {className: "buttons-container"}, 
             React.createElement("a", {href: this.state.twitter, target: "_blank", className: "share-button twitter "}, 
               React.createElement("span", {className: "fa fa-twitter-square"})
@@ -1343,6 +1360,8 @@ var CanvasElement = require('../canvas/canvas.jsx');
 var SquaresFlippingBehavior = require('../behaviors/SquaresFlipping');
 var LeftColumn = require('../columns/leftcolumn.jsx');
 
+var Page = require('./pageLayout.jsx');
+
 var hirePage = React.createClass({displayName: "hirePage",
   getInitialState: function(){
     return {
@@ -1350,34 +1369,97 @@ var hirePage = React.createClass({displayName: "hirePage",
     }
   },
   render: function(){
-    return (
-      React.createElement("div", {className: "page hire"}, 
+    var content = (
+      React.createElement("div", null, 
+        React.createElement("div", {className: "page-title"}, "You can hire me"), 
+        React.createElement("div", {className: "page-content"}, 
 
-        React.createElement(LeftColumn, null), 
-        
-        React.createElement("div", {className: "main-content"}, 
-          React.createElement("div", {className: "background"}, 
-            React.createElement(CanvasElement, {behavior: this.state.behavior})
+        React.createElement("p", null, 
+        "I am available for hire, contact me and tell me about your project."
+        ), 
+
+        React.createElement("p", null, 
+          "If you need one of the following services, I can provide that on an hourly" + ' ' +
+          "independent contractor basis:"
+        ), 
+  
+        React.createElement("ul", null, 
+          React.createElement("li", null, 
+            "Quick start a project. If you need a working prototype for a new project I can" + ' ' + 
+            "build it."
           ), 
-
-          React.createElement("div", {className: "content"}, 
-            React.createElement("div", {className: "row"}, 
-              React.createElement("div", {className: "col-xs-12 text-center"}, 
-                "You can hire me"
-              )
-            )
+          React.createElement("li", null, 
+            "rapid prototyping. If you can describe your problem in terms of what the" + ' ' +
+            "inputs are and what the outputs should be, I can build it very quickly."
+          ), 
+          React.createElement("li", null, 
+            "modular web development. front and back and",  
+            React.createElement("a", {href: "http://browserify.org"}, "in between"), "." + ' ' +
+            "release management. finding good modules. testing." + ' ' +
+            "carefully untangling a ball of mud with tiny modules."
+          ), 
+          React.createElement("li", null, 
+            "Embedding your website or application into a mobile application with Cordova" 
+          ), 
+          React.createElement("li", null, 
+           "Teaching online or presential (madrid)"
+          ), 
+          React.createElement("li", null, 
+            "Weekend or week courses (everywhere)"
           )
+        ), 
+        React.createElement("p", null, 
+          "I use ", React.createElement("a", {href: "http://nodejs.org/"}, "node"), " because it has ", React.createElement("a", {href: "https://www.npmjs.org/"}, "a nice package manager"), 
+          "and ", React.createElement("a", {href: "http://nodeschool.io/"}, "community"), "."
+        ), 
+
+        React.createElement("h3", null, "Terms and conditions"), 
+        React.createElement("p", null, 
+          "It will cost you: ", React.createElement("b", null, "35€ / hour"), " for normal developments. ", React.createElement("b", null, " 40-50 € per hour "), " for consulting companies. ", React.createElement("b", null, "500€ per day"), " for courses + ", React.createElement("b", null, "500€ for preparing the course material"), 
+          "I use ", React.createElement("a", {href: "http://npmjs.org/package/clocker"}, "clocker"), " to track hours" + ' ' +
+          "and ", React.createElement("a", {href: "http://npmjs.org/package/invoicer"}, "invoicer"), " to generate" + ' ' +
+          "invoices."
+        ), 
+
+        React.createElement("p", null, 
+          "In the course of development, I publish tiny reusable open source packages" + ' ' +
+          "where appropriate. This is crucial to the craft of doing software well and" + ' ' +
+          "everyone wins, especially you. This is just how I work."
+        ), 
+        
+        React.createElement("p", null, 
+        "Only remote positions. For short projects ( 1 - 4 weeks) y may accept in-house work (Madrid)"
+        ), 
+        React.createElement("p", null, 
+        "For courses I'm able to travel to everywhere, but you pay the expenses of the travel + bedroom."
+        ), 
+
+        React.createElement("p", null, 
+          "If you are in the Madrid accessible I may be able" + ' ' +
+          "to meet in person where appropriate."
+        ), 
+        
+        
+        React.createElement("h3", null, "Contact"), 
+       
+        React.createElement("p", null, 
+          "If you have a fitting project, email me about it!", 
+          React.createElement("a", {href: "mailto:rafinskipg@gmail.com"}, "rafinskipg@gmail.com")
+        ), 
+        React.createElement("p", null, " You can also send me secret messages through ", React.createElement("a", {href: "https://keybase.io/"}, "Keybase"), " "), 
+        React.createElement("pre", null, "    keybase encrypt rafinskipg -m 'The secret message'")
+
         )
-
-
-      
       )
+    )
+    return (
+      React.createElement(Page, {name: "hire", behavior: this.state.behavior, content: content})
     )
   }
 })
 
 module.exports = hirePage
-},{"../behaviors/SquaresFlipping":4,"../canvas/canvas.jsx":6,"../columns/leftcolumn.jsx":7,"lodash":38,"react":"react"}],26:[function(require,module,exports){
+},{"../behaviors/SquaresFlipping":4,"../canvas/canvas.jsx":6,"../columns/leftcolumn.jsx":7,"./pageLayout.jsx":28,"lodash":38,"react":"react"}],26:[function(require,module,exports){
 var React = require('react');
 var _ = require('lodash');
 
@@ -1388,7 +1470,8 @@ var SquaresFlipping = require('../behaviors/SquaresFlipping');
 var glitch = require('../behaviors/glitch');
 
 var BookRecommend = require('../components/book.jsx');
-var LeftColumn = require('../columns/leftcolumn.jsx');
+
+var Page = require('./pageLayout.jsx');
 
 var homePage = React.createClass({displayName: "homePage",
   getInitialState: function(){
@@ -1402,34 +1485,19 @@ var homePage = React.createClass({displayName: "homePage",
     }
   },
   render: function(){
-    return (
-      React.createElement("div", {className: "page home"}, 
-
-        React.createElement(LeftColumn, null), 
-        
-        React.createElement("div", {className: "main-content"}, 
-          React.createElement("div", {className: "background"}, 
-            React.createElement(CanvasElement, {behavior: this.state.behavior})
-          ), 
-
-          React.createElement("div", {className: "content"}, 
-            React.createElement("div", {className: "row"}, 
-              React.createElement("div", {className: "col-xs-12 text-center"}, 
-                React.createElement(BookRecommend, null)
-              )
-            )
-          )
-        )
-
-
-      
+    var content = (
+      React.createElement("div", null, 
+        React.createElement("div", {className: "page-content"}, React.createElement(BookRecommend, null))
       )
+    );
+    return (
+      React.createElement(Page, {name: "home", behavior: this.state.behavior, content: content})
     )
   }
 })
 
 module.exports = homePage
-},{"../behaviors/ParticlesGravity":3,"../behaviors/SquaresFlipping":4,"../behaviors/glitch":5,"../canvas/canvas.jsx":6,"../columns/leftcolumn.jsx":7,"../components/book.jsx":10,"lodash":38,"react":"react"}],27:[function(require,module,exports){
+},{"../behaviors/ParticlesGravity":3,"../behaviors/SquaresFlipping":4,"../behaviors/glitch":5,"../canvas/canvas.jsx":6,"../components/book.jsx":10,"./pageLayout.jsx":28,"lodash":38,"react":"react"}],27:[function(require,module,exports){
 module.exports = {
   homePage : require('./homePage.jsx'),
   blog : require('./blog.jsx'),
