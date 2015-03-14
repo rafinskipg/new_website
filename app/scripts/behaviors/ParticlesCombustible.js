@@ -3,7 +3,7 @@ var Particle = require('../models/particleCombustible');
 var Utils = require('../gameset/utils');
 var _ = require('lodash');
 
-var MAX_PARTICLES = 80;
+var MAX_PARTICLES = 40;
 var particles = [];
 var bgColor = '#08101A';
 var colors = ['#659A5C', '#B9A838', '#FFBC21'];

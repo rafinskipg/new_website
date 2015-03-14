@@ -65,7 +65,7 @@ var Particle = require('../models/particleCombustible');
 var Utils = require('../gameset/utils');
 var _ = require('lodash');
 
-var MAX_PARTICLES = 80;
+var MAX_PARTICLES = 40;
 var particles = [];
 var bgColor = '#08101A';
 var colors = ['#659A5C', '#B9A838', '#FFBC21'];
@@ -1090,7 +1090,7 @@ Particle.prototype.update = function(dt) {
   }
   
   
-  this.combustible -= this.speed.x * this.motor.consumesCombustible;
+  this.combustible -= Math.abs(this.speed.x) * this.motor.consumesCombustible;
 
   if(this.combustible < 0){
     this.alive = false;
@@ -1136,7 +1136,7 @@ Particle.prototype.render = function(context){
 
   context.fillStyle = radgrad; 
   
-  context.arc(0,0,radius, 0, Math.PI)
+  context.rect(0,0,radius,radius)
   
   context.fill();
   context.closePath();
@@ -1460,11 +1460,11 @@ var PageLayout = React.createClass({displayName: "PageLayout",
         React.createElement(LeftColumn, null), 
         
         React.createElement("div", {className: "main-content"}, 
-          React.createElement("div", {className: "background"}, 
-            React.createElement(CanvasElement, {behavior: this.state.behavior})
-          ), 
 
           React.createElement("div", {className: "content"}, 
+            React.createElement("div", {className: "background"}, 
+              React.createElement(CanvasElement, {behavior: this.state.behavior})
+            ), 
             React.createElement("div", {className: "row"}, 
               React.createElement("div", {className: "col-xs-12 text-center"}, 
                 this.state.content

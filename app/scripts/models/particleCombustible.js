@@ -54,7 +54,7 @@ Particle.prototype.update = function(dt) {
   }
   
   
-  this.combustible -= this.speed.x * this.motor.consumesCombustible;
+  this.combustible -= Math.abs(this.speed.x) * this.motor.consumesCombustible;
 
   if(this.combustible < 0){
     this.alive = false;
@@ -100,7 +100,7 @@ Particle.prototype.render = function(context){
 
   context.fillStyle = radgrad; 
   
-  context.arc(0,0,radius, 0, Math.PI)
+  context.rect(0,0,radius,radius)
   
   context.fill();
   context.closePath();
